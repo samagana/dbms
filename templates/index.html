@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="jumbotron">
+        <h1>Welcome to the EPMS app!</h1>
+        {% if user.is_authenticated and user.is_approved %}
+            <h1>Your profile has been approved!</h1>
+        {% elif user.is_authenticated %}
+            <h5>Your profile has <strong>NOT</strong> been approved! Waiting for verification by the HR.</h5>
+        {% endif %}
+    </div>  
+</div>
+{% endblock content %}
