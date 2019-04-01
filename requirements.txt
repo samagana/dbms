@@ -1,0 +1,5 @@
+Django==2.1.7
+django-bootstrap4==0.0.8
+django-tempus-dominus==5.1.2.4
+django-filter==2.1.0
+django-widget-tweaks==1.4.3
