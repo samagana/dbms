@@ -128,6 +128,13 @@ class CreateWorksOn(LoginRequiredMixin, CreateView):
     form_class = forms.WorksOnForm
     template_name = 'accounts/create_department.html'
 
+    def get_form(self, *args, **kwargs):
+        form = super(CreateWorksOn, self).get_form(*args, **kwargs)
+        form.fields['employee'].queryset = models.User.objects.all()
+        if self.request.user.is_hr:
+            form.fields['employee'].queryset = models.User.objects.filter(hr=self.request.user)
+        return form
+
 class CreateDependent(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('accounts:list_dependent')
     form_class = forms.DependentForm

@@ -9,7 +9,7 @@ from django.urls import reverse_lazy
 
 class AddLeave(LoginRequiredMixin,CreateView):
     form_class = LeaveForm
-    success_url = reverse_lazy("home")
+    success_url = reverse_lazy("leaves:my_leaves")
     template_name = 'leaves/leave_form.html'
 
     def form_valid(self, form):
@@ -63,4 +63,4 @@ class ApproveLeave(LoginRequiredMixin,View):
 
 class DeleteLeave(LoginRequiredMixin, DeleteView):
     model = Leave
-    success_url = reverse_lazy('leaves:all')
+    success_url = reverse_lazy('leaves:my_leaves')

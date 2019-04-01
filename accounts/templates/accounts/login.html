@@ -1,85 +1,106 @@
-{% extends "base_login.html" %}
-{% load bootstrap4 %}
-{% load static %}
+<!DOCTYPE html>
+<html>
+{% load staticfiles %}
 
-{% block contenta %}
-<style type="text/css">
-	body {
-		color: #fff;
-		background-image: url("{% static 'dbms/background2.jpg' %}")
-	}
-	.form-control {
-		min-height: 41px;
-		background: #f2f2f2;
-		box-shadow: none !important;
-		border: transparent;
-	}
-	.form-control:focus {
-		background: #e2e2e2;
-	}
-	.form-control, .btn {        
-        border-radius: 2px;
-    }
-	.login-form {
-		width: 325px;
-        margin: 100px auto; 
-		text-align: center;
-	}
-	.login-form h2 {
-        margin: 10px 0 25px;
-    }
-    .login-form form {
-		color: #7a7a7a;
-		border-radius: 3px;
-    	margin-bottom: 15px;
-        background: #fff;
-        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-        padding: 30px;
-    }
-    .login-form .btn {        
-        font-size: 16px;
-        font-weight: bold;
-		background: #3598dc;
-		border: none;
-        outline: none !important;
-    }
-	.login-form .btn:hover, .login-form .btn:focus {
-		background: #2389cd;
-	}
-	.login-form a {
-		color: #fff;
-		text-decoration: underline;
-	}
-	.login-form a:hover {
-		text-decoration: none;
-	}
-	.login-form form a {
-		color: #7a7a7a;
-		text-decoration: none;
-	}
-	.login-form form a:hover {
-		text-decoration: underline;
-	}
-</style>
-<div class="login-form">
-    <form method="post">
-        {% csrf_token %}
-		<h2 class="text-center">Login</h2> 
-		<div class="form-group has-error" style="text-align: left; font-size: 10px;">
-		{{ form.non_field_errors }}
-		</div>
-        <div class="form-group has-error">
-			{{ form.username.errors }}
-            <input type="text" class="form-control" name="username" placeholder="Username" required="required">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
+    <meta name="author" content="Creative Tim">
+    <title>Employee System</title>
+    <!-- Favicon -->
+    <link href="{% static 'dbms/favicon.ico' %}" rel="icon" type="image/ico">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <!-- Icons -->
+    <link href="{% static 'assets/vendor/nucleo/css/nucleo.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/@fortawesome/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+    <!-- Argon CSS -->
+    <link type="text/css" href="{% static 'assets/css/argon.css' %}" rel="stylesheet">
+</head>
+
+<body class="bg-default">
+    <div class="main-content">
+        <!-- Navbar -->
+
+        <!-- Header -->
+        <div class="header bg-gradient-primary py-6">
+            <div class="container">
+                <div class="header-body text-center mb-7">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-5 col-md-6">
+                            <h1 class="text-white">Welcome!</h1>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="separator separator-bottom separator-skew zindex-100">
+                <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
+                </svg>
+            </div>
         </div>
-        <div class="form-group has-error">
-			{{ form.password.errors }}
-            <input type="password" class="form-control" name="password" placeholder="Password" required="required">
-        </div> 
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
+        <!-- Page content -->
+        <div class="container mt--8 pb-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-5 col-md-7">
+                    <div class="card bg-secondary shadow border-0">
+
+                        <div class="card-body px-lg-5 py-lg-5">
+                            <div class="text-center text-muted mb-4">
+                                <small>Sign in with credentials</small>
+                            </div>
+                            <form method="POST">
+                                {% csrf_token %}
+                                <div class="form-group has-error" style="font-size: 0.8em;">
+                                    {{ form.non_field_errors }}
+                                </div>
+                                <div class="form-group mb-3">
+                                    <div class="input-group input-group-alternative">
+                                        <div class="input-group-prepend has-error">
+                                            <span class="input-group-text"><i class="far fa-user"></i></span>
+                                        </div>
+                                        {{ form.username.errors }}
+                                        <input type="text" class="form-control" name="username" placeholder="Username"
+                                            required="required">
+                                    </div>
+                                </div>
+                                <div class="form-group focused">
+                                    <div class="input-group input-group-alternative has-error">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                        </div>
+                                        {{ form.password.errors }}
+                                        <input type="password" class="form-control" name="password"
+                                            placeholder="Password" required="required">
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary my-4">Sign in</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+
+                        <div class="col text-right">
+                            <a href="{% url 'accounts:signup' %}"
+                                class="text-light"><small>Create new account</small></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </form>
-    <p class="text-center small" style="color: rgb(68, 66, 66)">Don't have an account? <a href="{% url 'accounts:signup' %}" style="color: black">Sign up here!</a></p>
-</div>              
-{% endblock contenta %}
+    </div>
+    <!-- Argon Scripts -->
+    <!-- Core -->
+    <script src="{% static 'assets/vendor/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <!-- Argon JS -->
+    <script src="{% static 'assets/js/argon.js' %}"></script>
+</body>
+
+</html>

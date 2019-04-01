@@ -1,13 +1,17 @@
-{% extends "base.html" %}
+{% extends "base_login.html" %}
 {% load bootstrap4 %}
 
-{% block content %}
-<div class="container">
-    <br><hr>
-    <form method="POST">
-        {% csrf_token %}
-        {% bootstrap_form form %}
-    <input type="submit" value="Apply">
-    </form>
+{% block contenta %}
+
+<div class="container px-5 py-4">
+    <div class="row">
+        <div class="col-6">
+            <form method="POST">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                <input type="submit" class="btn btn-primary" value="Apply">
+            </form>
+        </div>
+    </div>
 </div>
-{% endblock content %}
+{% endblock contenta %}
