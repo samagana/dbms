@@ -4,6 +4,7 @@ from accounts.models import *
 from .models import *
 from .forms import *
 from django.views.generic import CreateView, ListView, DetailView
+from django.views.generic.edit import FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
 import datetime
 
@@ -50,3 +51,13 @@ class SalaryDetail(LoginRequiredMixin, DetailView):
         data['ded'] = obj.amount * 0.055
         data['net'] = obj.amount * 0.945
         return data
+
+class SalaryReport(LoginRequiredMixin, FormView):
+    form_class = ReportForm
+    template_name = "report.html"
+
+    def form_valid(self, form):
+        dfrom = form.instance.from_date
+        dto = form.instance.to_date
+        queryset = Salary.objects.filter(date__gte=dfrom).filter(date__lte=dto)
+        

@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'tempus_dominus',
     'salary',
     'log',
+    'django_filters',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [

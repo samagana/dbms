@@ -1,11 +1,13 @@
 from django.contrib.auth import login, logout, get_user_model
 from django.urls import reverse_lazy, reverse
-from django.shortcuts import get_object_or_404, HttpResponseRedirect
+from django.shortcuts import get_object_or_404, HttpResponseRedirect, render
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, View, DeleteView
 from . import models
 from log.models import BackupUser, Backup
 from . import forms
+from .filters import UserFilter
 import datetime
 
 cur_user_model = get_user_model()
@@ -15,14 +17,22 @@ class SignUp(CreateView):
     success_url = reverse_lazy("login")
     template_name = "accounts/signup.html"
 
+@login_required
+def UserList2(request):
+    qs = models.User.objects.all()
+    if request.user.is_hr:
+        qs = qs.filter(hr=request.user.id)
+    f = UserFilter(request.GET, queryset=qs)
+    return render(request, "accounts/user_list.html", {'filter': f})
+
 class UserList(LoginRequiredMixin, ListView):
     model = models.User
 
     def get_queryset(self):
-        queryset = super().get_queryset()
-        if self.request.user.is_admin:
-            return queryset
-        return queryset.filter(hr=self.request.user.id)
+        qs = super().get_queryset()
+        if not self.request.user.is_admin:
+            qs = qs.filter(hr=self.request.user.id)
+        return qs
 
 
 class UserDetail(LoginRequiredMixin, DetailView):
