@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container" style="margin-top: 2rem">
+    <h1>Log</h1>
+    <table class = 'table align-items-center table-flush'>
+        <thead class='thead-dark'>
+            <tr>
+                <th>By</th>
+                <th>On(EID)</th>
+                <th>Date Time</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in backup_list.all %}
+            <tr>
+                <td>{{ item.by }}</td>
+                <td>{{ item.on_user.pk }}</td>
+                <td>{{ item.time }}</td>
+                <td><a href="{% url 'log:detail_log' pk=item.pk %}">Details</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}

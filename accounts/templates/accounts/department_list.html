@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container" style="margin-top: 2rem">
+    <h1>List of Employees</h1>
+    <table class = 'table align-items-center table-flush'>
+        <thead class='thead-dark'>
+            <tr>
+                <th >Department Name</th>
+                <th >Manager</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in department_list.all %}
+            <tr>
+                <td><a href="{% url 'accounts:detail_department' pk=item.pk %}">{{ item.name }}</a></td>
+                <td>{{ item.manager }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}

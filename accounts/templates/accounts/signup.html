@@ -1,18 +1,80 @@
-{% extends "base.html" %}
+{% extends "base_login.html" %}
 {% load bootstrap4 %}
+{% load static %}
 
-{% block content %}
-<div class="container" style="margin-top: 2rem">
-    <div class="row">
-        <div class="col-6 mx-auto">
-            <h1>Sign Up</h1>
-            <form method="POST">
-                {% csrf_token %}
-                {% bootstrap_form form %}
-                <input type="submit" value="Sign Up" class="btn btn-default btn-primary">
-            </form>
+{% block contenta %}
+<script>
+    window.addEventListener('load', function() {
+        $('input').removeAttr('placeholder');
+    });
+</script>
+<style type="text/css">
+	body {
+		color: #fff;
+		background-image: url("{% static 'dbms/background2.jpg' %}")
+	}
+	.form-control {
+		min-height: 41px;
+		background: #f2f2f2;
+		box-shadow: none !important;
+		border: transparent;
+	}
+	.form-control:focus {
+		background: #e2e2e2;
+	}
+	.form-control, .btn {        
+        border-radius: 2px;
+    }
+	.login-form {
+		width: 650px;
+        margin: 100px auto; 
+		text-align: left;
+	}
+	.login-form h2 {
+        margin: 10px 0 25px;
+    }
+    .login-form form {
+		color: #7a7a7a;
+		border-radius: 3px;
+    	margin-bottom: 15px;
+        background: #fff;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        padding: 30px;
+    }
+    .login-form .btn {        
+        font-size: 16px;
+        font-weight: bold;
+		background: #3598dc;
+		border: none;
+        outline: none !important;
+    }
+	.login-form .btn:hover, .login-form .btn:focus {
+		background: #2389cd;
+	}
+	.login-form a {
+		color: #fff;
+		text-decoration: underline;
+	}
+	.login-form a:hover {
+		text-decoration: none;
+	}
+	.login-form form a {
+		color: #7a7a7a;
+		text-decoration: none;
+	}
+	.login-form form a:hover {
+		text-decoration: underline;
+	}
+</style>
+<div class="login-form">
+    <form method="post">
+        {% csrf_token %}
+        <h2 class="text-center">Signup</h2> 
+        {% bootstrap_form form %}
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-lg btn-block" style="margin: 0 auto;
+            width: 100px">Signup</button>
         </div>
-    </div>
-</div>
-
-{% endblock %}
+    </form>
+</div>              
+{% endblock contenta %}

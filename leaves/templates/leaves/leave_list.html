@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <br>
+        <table class='table align-items-center table-flush'>
+                <colgroup>
+                    <col span="1" style="width: 25%;">
+                    <col span="1" style="width: 25%;">
+                    <col span="1" style="width: 25%;">
+                    <col span="1" style="width: 25%;">
+                    <col span="1" style="width: 25%;">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>Employee ID</th>
+                        <th>From Date</th>
+                        <th>To Date</th>
+                        <th>Reason</th>
+                        <th>Approved?</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in leave_list.all %}
+                    <tr>
+                        <td><a href="{% url 'accounts:detail_user' pk=item.pk %}">{{ item.eid.username }}</a></td>
+                        <td>{{ item.from_date }}</td>
+                        <td>{{ item.to_date }}</td>
+                        <td>{{ item.reason }}</td>
+                        {% if item.is_approved %}
+                        <td><a href="{% url 'leaves:approve' id=item.id %}">Yes</a></td>
+                        {% else %}
+                        <td><a href="{% url 'leaves:approve' id=item.id %}">No</a></td>  
+                        {% endif %}
+                        <td>
+                            <form method="POST" action="{% url 'leaves:delete_leave' pk=item.pk %}">
+                                    {% csrf_token %}
+                                    <button class='btn btn-danger'>Delete</button>
+                                 </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+</div>
+{% endblock content %}

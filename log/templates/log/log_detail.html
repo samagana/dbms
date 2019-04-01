@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container" style="margin-top: 1rem">
+    <hr>
+    <table class='table align-items-center table-flush'>
+        <thead class='thead-dark'>
+            <tr>
+                <th></th>
+                <th>From</th>
+                <th>To</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>{{ form1.first_name.label }}</td><td>{{ form1.first_name.value }}</td><td>{{ form2.first_name.value }}</td></tr>
+            <tr><td>{{ form1.last_name.label }}</td><td>{{ form1.last_name.value }}</td><td>{{ form2.last_name.value }}</td></tr>
+            <tr><td>{{ form1.is_hr.label }}</td><td>{{ form1.is_hr.value }}</td><td>{{ form2.is_hr.value }}</td></tr>
+            <tr><td>{{ form1.is_admin.label }}</td><td>{{ form1.is_admin.value }}</td><td>{{ form2.is_admin.value }}</td></tr>
+            <tr><td>{{ form1.is_approved.label }}</td><td>{{ form1.is_approved.value }}</td><td>{{ form2.is_approved.value }}</td></tr>
+            <tr><td>{{ form1.hr.label }}</td><td>{{ form1.hr.value }}</td><td>{{ form2.hr.value }}</td></tr>
+            <tr><td>{{ form1.supervisor.label }}</td><td>{{ form1.supervisor.value }}</td><td>{{ form2.supervisor.value }}</td></tr>
+            <tr><td>{{ form1.address.label }}</td><td>{{ form1.address.value }}</td><td>{{ form2.address.value }}</td></tr>
+            <tr><td>{{ form1.salary.label }}</td><td>{{ form1.salary.value }}</td><td>{{ form2.salary.value }}</td></tr>
+            <tr><td>{{ form1.dept.label }}</td><td>{{ form1.dept.value }}</td><td>{{ form2.dept.value }}</td></tr>
+            <tr><td>{{ form1.dob.label }}</td><td>{{ form1.dob.value }}</td><td>{{ form2.dob.value }}</td></tr>
+            <tr><td>{{ form1.designation.label }}</td><td>{{ form1.designation.value }}</td><td>{{ form2.designation.value }}</td></tr>
+        </tbody>
+    </table>
+    <a href="{% url 'log:recover_log' pk=object.pk %}"><button class='btn btn-primary mb-3'>Recover</button></a>
+</div>
+
+{% endblock content %}

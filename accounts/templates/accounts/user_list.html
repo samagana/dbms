@@ -1,20 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container" style="margin-top: 4rem">
+<div class="container" style="margin-top: 2rem">
     <h1>List of Employees</h1>
-    <h3> Counts = {{ user_list.count }} </h1>
-    <table>
-        <colgroup>
-            <col span="1" style="width: 40%;">
-            <col span="1" style="width: 40%;">
-            <col span="1" style="width: 40%;">
-        </colgroup>
-        <thead>
+    <table class = 'table align-items-center table-flush'>
+        <thead class='thead-dark'>
             <tr>
                 <th >Employee Name</th>
                 <th >Employee ID</th>
                 <th >Validated</th>
+                <th ></th>
             </tr>
         </thead>
         <tbody>
@@ -27,6 +22,12 @@
                 {% else %}
                 <td>No</td>  
                 {% endif %}
+                <td>
+                    <form method="POST" action="{% url 'accounts:delete_profile' pk=item.pk %}">
+                        {% csrf_token %}
+                        <button class='btn btn-danger'>Delete</button>
+                     </form>
+                </td>
             </tr>
             {% endfor %}
         </tbody>

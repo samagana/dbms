@@ -40,6 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'bootstrap4',
+    'leaves',
+    'tempus_dominus',
+    'salary',
+    'log',
 ]
 
 MIDDLEWARE = [

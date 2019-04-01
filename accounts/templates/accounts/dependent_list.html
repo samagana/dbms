@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container" style="margin-top: 2rem">
+    <h1>List of Dependents</h1>
+    <hr>
+    <table class = 'table align-items-center table-flush'>
+        <thead class='thead-dark'>
+            <tr>
+                <th >Dependent Name</th>
+                <th >Relation</th>
+                <th >Mobile No</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in dependent_list.all %}
+            <tr>
+                <td>{{ item.name }}</td>
+                <td>{{ item.relation }}</td>
+                <td>{{ item.mobileno }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}
