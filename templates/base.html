@@ -150,7 +150,9 @@
                             <i class="fas fa-table"></i> Departments
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-default_dropdown_1">
+                            {% if user.is_admin %}
                             <a class="dropdown-item" href="{% url 'accounts:create_department' %}">Add Department</a>
+                            {% endif %}
                             <a class="dropdown-item" href="{% url 'accounts:list_department' %}">List Department</a>
                         </div>
                     </li>
@@ -160,7 +162,9 @@
                             <i class="fas fa-code-branch"></i> Projects
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-default_dropdown_1">
+                            {% if user.is_admin %}
                             <a class="dropdown-item" href="{% url 'accounts:create_project' %}">Add Project</a>
+                            {% endif %}
                             <a class="dropdown-item" href="{% url 'accounts:list_project' %}">List Project</a>
                             <a class="dropdown-item" href="{% url 'accounts:project_link' %}">Link Employee</a>
                         </div>
@@ -171,10 +175,13 @@
                             <i class="fas fa-user-tie"></i> Designations
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-default_dropdown_1">
+                            {% if user.is_admin %}
                             <a class="dropdown-item" href="{% url 'accounts:create_designation' %}">Add Designation</a>
+                            {% endif %}
                             <a class="dropdown-item" href="{% url 'accounts:list_designation' %}">List Designation</a>
                         </div>
                     </li>
+                    {% if user.is_admin %}
                     <li class="nav-item dropdown">
                         <a class="nav-link nav-link-icon" href="#" id="navbar-default_dropdown_1" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -184,6 +191,7 @@
                             <a class="dropdown-item" href="{% url 'log:list_log' %}">List Logs</a>
                         </div>
                     </li>
+                    {% endif %}
                     {% endif %}
                     <li class="nav-item dropdown">
                         <a class="nav-link nav-link-icon" href="#" id="navbar-default_dropdown_1" role="button"
