@@ -11,18 +11,42 @@
             </tr>
         </thead>
         <tbody>
+        	{% if form1.first_name.value != form2.first_name.value %}
             <tr><td>{{ form1.first_name.label }}</td><td>{{ form1.first_name.value }}</td><td>{{ form2.first_name.value }}</td></tr>
+            {% endif %}
+            {% if form1.last_name.value != form2.last_name.value %}
             <tr><td>{{ form1.last_name.label }}</td><td>{{ form1.last_name.value }}</td><td>{{ form2.last_name.value }}</td></tr>
+            {% endif %}
+            {% if form1.is_hr.value != form2.is_hr.value %}
             <tr><td>{{ form1.is_hr.label }}</td><td>{{ form1.is_hr.value }}</td><td>{{ form2.is_hr.value }}</td></tr>
-            <tr><td>{{ form1.is_admin.label }}</td><td>{{ form1.is_admin.value }}</td><td>{{ form2.is_admin.value }}</td></tr>
+            {% endif %}
+            {% if form1.is_admin.value != form2.is_admin.value %}
+            <tr><td>{{ form1.is_admin.label }}</td><td>{{ form1.is_admin.value }}</td><td>{{ frm2.is_admin.value }}</td></tr>
+            {% endif %}
+            {% if form1.is_approved.value != form2.is_approved.value %}
             <tr><td>{{ form1.is_approved.label }}</td><td>{{ form1.is_approved.value }}</td><td>{{ form2.is_approved.value }}</td></tr>
+            {% endif %}
+            {% if form1.hr.value != form2.hr.value %}
             <tr><td>{{ form1.hr.label }}</td><td>{{ form1.hr.value }}</td><td>{{ form2.hr.value }}</td></tr>
+            {% endif %}
+            {% if form1.supervisor.value != form2.supervisor.value %}
             <tr><td>{{ form1.supervisor.label }}</td><td>{{ form1.supervisor.value }}</td><td>{{ form2.supervisor.value }}</td></tr>
+            {% endif %}
+            {% if form1.address.value != form2.address.value %}
             <tr><td>{{ form1.address.label }}</td><td>{{ form1.address.value }}</td><td>{{ form2.address.value }}</td></tr>
+            {% endif %}
+            {% if form1.salary.value != form2.salary.value %}
             <tr><td>{{ form1.salary.label }}</td><td>{{ form1.salary.value }}</td><td>{{ form2.salary.value }}</td></tr>
+            {% endif %}
+            {% if form1.dept.value != form2.dept.value %}
             <tr><td>{{ form1.dept.label }}</td><td>{{ form1.dept.value }}</td><td>{{ form2.dept.value }}</td></tr>
+            {% endif %}
+            {% if form1.dob.value != form2.dob.value %}
             <tr><td>{{ form1.dob.label }}</td><td>{{ form1.dob.value }}</td><td>{{ form2.dob.value }}</td></tr>
+            {% endif %}
+            {% if form1.desgination.value != form2.designation.value %}
             <tr><td>{{ form1.designation.label }}</td><td>{{ form1.designation.value }}</td><td>{{ form2.designation.value }}</td></tr>
+            {% endif %}
         </tbody>
     </table>
     <a href="{% url 'log:recover_log' pk=object.pk %}"><button class='btn btn-primary mb-3'>Recover</button></a>

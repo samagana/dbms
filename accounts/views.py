@@ -37,6 +37,7 @@ class UserList(LoginRequiredMixin, ListView):
 
 class UserDetail(LoginRequiredMixin, DetailView):
     model = models.User
+    context_object_name = "object"
 
     def get(self, request, *args, **kwargs):
         if not(models.User.objects.get(pk=self.kwargs['pk']).hr == self.request.user or self.request.user.is_admin):
@@ -61,6 +62,7 @@ class CurUserDetail(LoginRequiredMixin, DetailView):
 
 class UserUpdateView(LoginRequiredMixin, UpdateView):
     model = models.User
+    context_object_name = "object"
     template_name_suffix = "_update_form"
     fields = ["first_name", "last_name", "address", "email", "is_approved", "is_hr", "is_admin",
     "hr", "supervisor", "dept", "salary", "designation"]

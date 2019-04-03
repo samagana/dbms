@@ -8,6 +8,9 @@
     <div class="row">
         <h5 class="display-4"><strong>Manager:</strong> {{object.manager.first_name}}</h5>
     </div>
+    <div class="row">
+        <h5 class="display-4"><strong>Count:</strong> {{ object.employeesUnder.count }}</h5>
+    </div>
     <br>
     <div class="row">
         <h4>Employees under this department</h4>
@@ -32,6 +35,25 @@
             </tbody>
         </table>
     </div>
+    
+    <div class="row">
+        <table class='table align-items-center'>
+            <thead class='thead-light'>
+                <tr>
+                    <th>Projects undertaken by Department</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in object.manages.all %}
+                <tr>
+                    <td>{{ item.name }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    
 </div>
 
 {% endblock content %}
