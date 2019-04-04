@@ -38,6 +38,7 @@ class UserList(LoginRequiredMixin, ListView):
 class UserDetail(LoginRequiredMixin, DetailView):
     model = models.User
     context_object_name = "object"
+    template_name = "accounts/user_detail.html"
 
     def get(self, request, *args, **kwargs):
         if not(models.User.objects.get(pk=self.kwargs['pk']).hr == self.request.user or self.request.user.is_admin):
@@ -52,6 +53,8 @@ class UserDetail(LoginRequiredMixin, DetailView):
 
 class CurUserDetail(LoginRequiredMixin, DetailView):
     model = models.User
+    context_object_name = "object"
+    template_name = "accounts/cur_user_detail.html"
 
     def get_queryset(self):
         queryset = super().get_queryset()

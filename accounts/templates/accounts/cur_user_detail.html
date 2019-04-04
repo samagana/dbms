@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container px-5 py-4">
+    <table class = 'table align-items-center table-flush'>
+        <tbody>
+            <tr><td>First Name</td><td>{{ object.first_name }}</td></tr>
+            <tr><td>Last Name</td><td>{{ object.last_name }}</td></tr>
+            <tr><td>Username</td><td>{{ object.username }}</td></tr>
+            <tr><td>HR</td><td>{{ object.hr }}</td></tr>
+            <tr><td>Supervisor</td><td>{{ object.supervisor }}</td></tr>
+            <tr><td>Address</td><td>{{ object.address }}</td></tr>
+            <tr><td>Salary</td><td>{{ object.salary }}</td></tr>
+            <tr><td>Dept</td><td>{{ object.dept }}</td></tr>
+            <tr><td>DOB</td><td>{{ object.dob }}</td></tr>
+            <tr><td>Designation</td><td>{{ object.designation }}</td></tr>
+        </tbody>
+    </table>
+    <a href="{% url 'accounts:edit_my' %}"><button class='btn btn-primary mb-3'>Edit</button></a>
+    <br>
+    <br>
+    <h1>Dependents:</h1>
+    {% if object.dependson.count > 0 %}
+    <table class = 'table align-items-center table-flush'>
+        <thead class='thead-light'>
+            <tr>
+                <th >Dependent Name</th>
+                <th >Relation</th>
+                <th >Mobile No</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in object.dependson.all %}
+            <tr>
+                <td>{{ item.name }}</td>
+                <td>{{ item.realtion }}</td>
+                <td>{{ item.mobileno }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+    <br>
+    {% if object.workson.count > 0 %}
+    <table class = 'table align-items-center table-flush'>
+        <thead class='thead-light'>
+            <tr>
+                <th >Project Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in object.workson.all %}
+            <tr>
+                <td><a href="{% url 'accounts:detail_project' pk=item.project.pk %}">{{ item.project.name }}</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+</div>
+
+{% endblock content %}
